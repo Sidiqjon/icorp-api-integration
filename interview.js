@@ -47,8 +47,6 @@ async function sendInitial() {
 
 async function finishRequest() {
   const code = part1 + part2
-  console.log("Final code:", code)
-
   const u = new URL(TEST_URL)
   u.searchParams.set("code", code)
   
@@ -56,7 +54,10 @@ async function finishRequest() {
     const res = await fetch(u.toString())
     const text = await res.text()
 
-    console.log("Final response:", text)
+    console.log("\n=== RESULT ===")
+    console.log("Combined key:", code)
+    console.log("Final message:", text)
+    console.log("==============\n")
 
     fs.writeFileSync("result.txt", `combined=${code}\n\nresponse:\n${text}`)
     console.log("Saved result.txt")
